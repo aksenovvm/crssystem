@@ -9,8 +9,18 @@
 import { registerBlock } from "../registry/blockRegistry";
 import type { BlockDefinition } from "../registry/types";
 
+import { ctaDefinition } from "./cta/definition";
+import { featuresDefinition } from "./features/definition";
 import { heroDefinition } from "./hero/definition";
+import { servicesDefinition } from "./services/definition";
+import { textImageDefinition } from "./text-image/definition";
 
-const definitions: BlockDefinition[] = [heroDefinition];
+const definitions: BlockDefinition[] = [
+  heroDefinition,
+  featuresDefinition,
+  servicesDefinition,
+  textImageDefinition,
+  ctaDefinition,
+];
 
 definitions.forEach(registerBlock);

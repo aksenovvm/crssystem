@@ -55,6 +55,37 @@ export const demoProject: SiteProject = {
           variant: "grid",
           content: {
             title: { ru: "Возможности", en: "Features", uz: "Imkoniyatlar" },
+            subtitle: {
+              ru: "Всё, что нужно для небольшого сайта",
+              en: "Everything a small website needs",
+              uz: "Kichik sayt uchun kerak bo'lgan hamma narsa",
+            },
+            items: [
+              {
+                title: { ru: "Готовые секции", en: "Ready-made sections", uz: "Tayyor bo'limlar" },
+                description: {
+                  ru: "Hero, услуги, отзывы, контакты и другие блоки.",
+                  en: "Hero, services, reviews, contacts and more.",
+                  uz: "Hero, xizmatlar, sharhlar, kontaktlar va boshqalar.",
+                },
+              },
+              {
+                title: { ru: "Три языка", en: "Three languages", uz: "Uchta til" },
+                description: {
+                  ru: "Русский, английский и узбекский из коробки.",
+                  en: "Russian, English and Uzbek out of the box.",
+                  uz: "Rus, ingliz va o'zbek tillari tayyor.",
+                },
+              },
+              {
+                title: { ru: "Экспорт в ZIP", en: "ZIP export", uz: "ZIP eksport" },
+                description: {
+                  ru: "Готовый статический сайт без зависимости от конструктора.",
+                  en: "A static site that doesn't depend on the builder.",
+                  uz: "Konstruktorga bog'liq bo'lmagan statik sayt.",
+                },
+              },
+            ],
           },
           styles: {
             layout: { columns: { desktop: 3, tablet: 2, mobile: 1 } },
@@ -63,9 +94,16 @@ export const demoProject: SiteProject = {
         {
           id: "block-cta",
           type: "cta",
-          variant: "default",
+          variant: "centered",
           content: {
             title: { ru: "Готовы начать?", en: "Ready to start?", uz: "Boshlashga tayyormisiz?" },
+            description: {
+              ru: "Соберите первую страницу за 10 минут.",
+              en: "Build your first page in 10 minutes.",
+              uz: "Birinchi sahifani 10 daqiqada yig'ing.",
+            },
+            buttonLabel: { ru: "Начать", en: "Get started", uz: "Boshlash" },
+            buttonHref: "#",
           },
           styles: {},
         },
