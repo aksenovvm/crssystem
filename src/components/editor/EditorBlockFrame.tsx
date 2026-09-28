@@ -1,7 +1,9 @@
 "use client";
 
 import type { KeyboardEvent, MouseEvent, ReactNode } from "react";
-import { Copy, Trash2, type LucideIcon } from "lucide-react";
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+import { Copy, GripVertical, Trash2, type LucideIcon } from "lucide-react";
 import { toast } from "sonner";
 
 import type { BlockDefinition } from "@/builder/registry/types";
@@ -16,7 +18,7 @@ interface EditorBlockFrameProps {
 }
 
 /**
- * Оболочка блока в редакторе: hover/selected outline, label и toolbar.
+ * Оболочка блока в редакторе: hover/selected outline, label, toolbar и сортировка (drag handle).
  * Сам renderer блока ничего не знает про редактор.
  */
 export function EditorBlockFrame({ block, definition, children }: EditorBlockFrameProps) {
@@ -24,6 +26,9 @@ export function EditorBlockFrame({ block, definition, children }: EditorBlockFra
   const selectBlock = useEditorStore((state) => state.selectBlock);
   const duplicateBlock = useEditorStore((state) => state.duplicateBlock);
   const label = definition?.label ?? block.type;
+
+  const { attributes, listeners, setNodeRef, setActivatorNodeRef, transform, transition, isDragging } =
+    useSortable({ id: block.id });
 
   function handleClick(event: MouseEvent<HTMLDivElement>) {
     // Клик по блоку не должен долетать до canvas (там он снимает выбор).
@@ -49,6 +54,8 @@ export function EditorBlockFrame({ block, definition, children }: EditorBlockFra
 
   return (
     <div
+      ref={setNodeRef}
+      style={{ transform: CSS.Translate.toString(transform), transition }}
       data-block-id={block.id}
       tabIndex={0}
       aria-label={`Блок ${label}`}
@@ -58,6 +65,8 @@ export function EditorBlockFrame({ block, definition, children }: EditorBlockFra
       className={cn(
         "group/block relative outline-2 -outline-offset-2 outline-transparent transition-[outline-color] hover:outline-sky-400 focus-visible:outline-sky-500",
         isSelected && "outline-sky-600 hover:outline-sky-600",
+        // Место, откуда тянут блок: полупрозрачный оригинал с пунктирной рамкой.
+        isDragging && "z-20 opacity-40 outline-dashed outline-sky-600",
       )}
     >
       <span
@@ -77,6 +86,18 @@ export function EditorBlockFrame({ block, definition, children }: EditorBlockFra
           isSelected && "visible",
         )}
       >
+        <button
+          ref={setActivatorNodeRef}
+          type="button"
+          title="Перетащить"
+          {...attributes}
+          {...listeners}
+          aria-label={`Перетащить блок ${label}`}
+          onClick={(event) => event.stopPropagation()}
+          className="flex size-7 cursor-grab touch-none items-center justify-center rounded hover:bg-white/20 focus-visible:bg-white/20 focus-visible:outline-2 focus-visible:outline-white active:cursor-grabbing"
+        >
+          <GripVertical className="size-4" aria-hidden />
+        </button>
         <FrameButton icon={Copy} label="Дублировать" onClick={() => duplicateBlock(block.id)} />
         <FrameButton icon={Trash2} label="Удалить" onClick={() => removeBlockWithUndo(block, label)} />
       </div>

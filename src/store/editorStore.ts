@@ -1,6 +1,7 @@
 import { create } from "zustand";
 
 import { demoProject } from "@/builder/fixtures/demoProject";
+import { moveItem } from "@/lib/array";
 import { createId } from "@/lib/id";
 import type { Breakpoint, Page, PageBlock, SiteProject } from "@/types";
 
@@ -21,6 +22,8 @@ export interface EditorState {
   removeBlock(id: string): void;
   /** Вставляет копию блока сразу после оригинала и выделяет копию. */
   duplicateBlock(id: string): void;
+  /** Меняет порядок блоков текущей страницы. Выделение не трогает. */
+  moveBlock(fromIndex: number, toIndex: number): void;
 
   setLocale(locale: string): void;
   setBreakpoint(bp: Breakpoint): void;
@@ -73,6 +76,9 @@ export const useEditorStore = create<EditorState>()((set) => ({
         selectedBlockId: copy.id,
       };
     }),
+
+  moveBlock: (fromIndex, toIndex) =>
+    set((state) => updateCurrentPageBlocks(state, (blocks) => moveItem(blocks, fromIndex, toIndex))),
 
   setLocale: (locale) => set({ currentLocale: locale }),
   setBreakpoint: (bp) => set({ currentBreakpoint: bp }),

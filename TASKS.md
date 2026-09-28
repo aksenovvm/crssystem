@@ -235,14 +235,14 @@ Hero отображается из Zustand state.
 
 ## Sprint 5.1 — Сортировка блоков
 
-- [ ] 1. Установить `@dnd-kit/core`.
-- [ ] 2. Установить `@dnd-kit/sortable`.
-- [ ] 3. Обернуть Canvas в DndContext.
-- [ ] 4. Сделать блоки sortable.
-- [ ] 5. Реализовать `moveBlock`.
-- [ ] 6. Добавить drag handle.
-- [ ] 7. Добавить DragOverlay.
-- [ ] 8. Сохранить selection после reorder.
+- [x] 1. Установить `@dnd-kit/core`.
+- [x] 2. Установить `@dnd-kit/sortable`.
+- [x] 3. Обернуть Canvas в DndContext.
+- [x] 4. Сделать блоки sortable.
+- [x] 5. Реализовать `moveBlock`.
+- [x] 6. Добавить drag handle.
+- [x] 7. Добавить DragOverlay.
+- [x] 8. Сохранить selection после reorder.
 
 ### ✅ CHECKPOINT 5.1
 
