@@ -83,15 +83,15 @@ Blocks | Canvas | Inspector
 
 ## Sprint 1.2 — Основные типы данных
 
-- [ ] 1. Создать `Breakpoint`.
-- [ ] 2. Создать `LocalizedText`.
-- [ ] 3. Создать `ResponsiveValue<T>`.
-- [ ] 4. Создать `SpacingValue`.
-- [ ] 5. Создать `BlockStyles`.
-- [ ] 6. Создать `PageBlock`.
-- [ ] 7. Создать `Page`.
-- [ ] 8. Создать `SiteProject`.
-- [ ] 9. Создать demo project fixture.
+- [x] 1. Создать `Breakpoint`.
+- [x] 2. Создать `LocalizedText`.
+- [x] 3. Создать `ResponsiveValue<T>`.
+- [x] 4. Создать `SpacingValue`.
+- [x] 5. Создать `BlockStyles`.
+- [x] 6. Создать `PageBlock`.
+- [x] 7. Создать `Page`.
+- [x] 8. Создать `SiteProject`.
+- [x] 9. Создать demo project fixture.
 
 ### ✅ CHECKPOINT 1.2
 

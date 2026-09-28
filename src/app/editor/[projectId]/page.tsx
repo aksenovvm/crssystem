@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 
+import { demoProject } from "@/builder/fixtures/demoProject";
 import { EditorShell } from "@/components/editor/EditorShell";
 
 export const metadata: Metadata = {
@@ -9,5 +11,10 @@ export const metadata: Metadata = {
 export default async function EditorPage({ params }: PageProps<"/editor/[projectId]">) {
   const { projectId } = await params;
 
-  return <EditorShell projectName={projectId} />;
+  // Пока есть только демо-проект; загрузка из repository появится в Sprint 11.1.
+  if (projectId !== demoProject.id) {
+    notFound();
+  }
+
+  return <EditorShell project={demoProject} />;
 }
