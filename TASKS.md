@@ -109,14 +109,14 @@ Editor должен продолжать запускаться.
 
 ## Sprint 2.1 — Block Registry
 
-- [ ] 1. Создать `BlockDefinition`.
-- [ ] 2. Создать `BlockVariant`.
-- [ ] 3. Создать singleton/simple registry.
-- [ ] 4. Реализовать `registerBlock`.
-- [ ] 5. Реализовать `getBlockDefinition`.
-- [ ] 6. Реализовать `getAllBlocks`.
-- [ ] 7. Реализовать `getBlocksByCategory`.
-- [ ] 8. Реализовать `createBlock`.
+- [x] 1. Создать `BlockDefinition`.
+- [x] 2. Создать `BlockVariant`.
+- [x] 3. Создать singleton/simple registry.
+- [x] 4. Реализовать `registerBlock`.
+- [x] 5. Реализовать `getBlockDefinition`.
+- [x] 6. Реализовать `getAllBlocks`.
+- [x] 7. Реализовать `getBlocksByCategory`.
+- [x] 8. Реализовать `createBlock`.
 
 ### ✅ CHECKPOINT 2.1
 
