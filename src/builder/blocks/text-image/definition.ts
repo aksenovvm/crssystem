@@ -38,7 +38,13 @@ export const textImageDefinition: BlockDefinition = {
   renderer: TextImageBlock,
 
   inspector: {
-    content: [],
+    content: [
+      { type: "text", path: "title", label: "Заголовок", localized: true },
+      { type: "textarea", path: "text", label: "Текст", localized: true, rows: 5 },
+      { type: "text", path: "buttonLabel", label: "Текст кнопки", localized: true },
+      { type: "text", path: "buttonHref", label: "Ссылка кнопки", placeholder: "#" },
+      { type: "text", path: "imageUrl", label: "Изображение (URL)", placeholder: "https://…" },
+    ],
     style: [],
   },
 };

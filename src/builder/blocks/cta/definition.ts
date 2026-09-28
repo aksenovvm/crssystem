@@ -37,7 +37,12 @@ export const ctaDefinition: BlockDefinition = {
   renderer: CtaBlock,
 
   inspector: {
-    content: [],
+    content: [
+      { type: "text", path: "title", label: "Заголовок", localized: true },
+      { type: "textarea", path: "description", label: "Описание", localized: true },
+      { type: "text", path: "buttonLabel", label: "Текст кнопки", localized: true },
+      { type: "text", path: "buttonHref", label: "Ссылка кнопки", placeholder: "#contacts" },
+    ],
     style: [],
   },
 };

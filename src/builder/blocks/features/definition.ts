@@ -61,7 +61,10 @@ export const featuresDefinition: BlockDefinition = {
   renderer: FeaturesBlock,
 
   inspector: {
-    content: [],
+    content: [
+      { type: "text", path: "title", label: "Заголовок", localized: true },
+      { type: "textarea", path: "subtitle", label: "Подзаголовок", localized: true },
+    ],
     style: [],
   },
 };

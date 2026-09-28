@@ -3,6 +3,7 @@ import { create } from "zustand";
 import { demoProject } from "@/builder/fixtures/demoProject";
 import { moveItem } from "@/lib/array";
 import { createId } from "@/lib/id";
+import { setByPath } from "@/lib/path";
 import type { Breakpoint, Page, PageBlock, SiteProject } from "@/types";
 
 export interface EditorState {
@@ -24,6 +25,10 @@ export interface EditorState {
   duplicateBlock(id: string): void;
   /** Меняет порядок блоков текущей страницы. Выделение не трогает. */
   moveBlock(fromIndex: number, toIndex: number): void;
+
+  /** Записывает значение в `block.content` по пути, например `title.ru` или `items.0.title.en`. */
+  updateBlockContent(id: string, path: string, value: unknown): void;
+  updateBlockVariant(id: string, variant: string): void;
 
   setLocale(locale: string): void;
   setBreakpoint(bp: Breakpoint): void;
@@ -80,6 +85,13 @@ export const useEditorStore = create<EditorState>()((set) => ({
   moveBlock: (fromIndex, toIndex) =>
     set((state) => updateCurrentPageBlocks(state, (blocks) => moveItem(blocks, fromIndex, toIndex))),
 
+  updateBlockContent: (id, path, value) =>
+    set((state) =>
+      updateBlock(state, id, (block) => ({ ...block, content: setByPath(block.content, path, value) })),
+    ),
+
+  updateBlockVariant: (id, variant) => set((state) => updateBlock(state, id, (block) => ({ ...block, variant }))),
+
   setLocale: (locale) => set({ currentLocale: locale }),
   setBreakpoint: (bp) => set({ currentBreakpoint: bp }),
 }));
@@ -118,6 +130,16 @@ function updateCurrentPageBlocks(
       ),
     },
   };
+}
+
+function updateBlock(
+  state: EditorState,
+  id: string,
+  update: (block: PageBlock) => PageBlock,
+): Partial<EditorState> {
+  return updateCurrentPageBlocks(state, (blocks) =>
+    blocks.map((block) => (block.id === id ? update(block) : block)),
+  );
 }
 
 function insertAt<T>(items: T[], item: T, index: number): T[] {

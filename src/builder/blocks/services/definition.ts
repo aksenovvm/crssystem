@@ -64,7 +64,10 @@ export const servicesDefinition: BlockDefinition = {
   renderer: ServicesBlock,
 
   inspector: {
-    content: [],
+    content: [
+      { type: "text", path: "title", label: "Заголовок", localized: true },
+      { type: "textarea", path: "subtitle", label: "Подзаголовок", localized: true },
+    ],
     style: [],
   },
 };

@@ -17,12 +17,21 @@ export interface BlockRendererProps {
   mode: RendererMode;
 }
 
-/** Описание одного поля в Inspector. */
-export interface ControlDefinition {
-  type: string;
+interface BaseControlDefinition {
+  /** Путь внутри `block.content`, например `title` или `items.0.title`. */
   path: string;
   label: string;
+  /** Значение — LocalizedText: Inspector редактирует `${path}.${currentLocale}`. */
+  localized?: boolean;
+  /** Показывать поле только для этих вариантов блока. */
+  variants?: string[];
 }
+
+/** Описание одного поля в Inspector. */
+export type ControlDefinition =
+  | (BaseControlDefinition & { type: "text"; placeholder?: string })
+  | (BaseControlDefinition & { type: "textarea"; rows?: number; placeholder?: string })
+  | (BaseControlDefinition & { type: "select"; options: { value: string; label: string }[] });
 
 /** Декларативное описание типа блока. Новый блок подключается только через registry. */
 export interface BlockDefinition {

@@ -256,14 +256,14 @@ Hero отображается из Zustand state.
 
 ## Sprint 6.1 — Базовые editor controls
 
-- [ ] 1. Создать `TextControl`.
-- [ ] 2. Создать `TextareaControl`.
-- [ ] 3. Создать `SelectControl`.
-- [ ] 4. Создать utility `setByPath`.
-- [ ] 5. Реализовать `updateBlockContent`.
-- [ ] 6. Подключить Hero title к Inspector.
-- [ ] 7. Подключить Hero description.
-- [ ] 8. Подключить variant selector.
+- [x] 1. Создать `TextControl`.
+- [x] 2. Создать `TextareaControl`.
+- [x] 3. Создать `SelectControl`.
+- [x] 4. Создать utility `setByPath`.
+- [x] 5. Реализовать `updateBlockContent`.
+- [x] 6. Подключить Hero title к Inspector.
+- [x] 7. Подключить Hero description.
+- [x] 8. Подключить variant selector.
 
 ### ✅ CHECKPOINT 6.1
 

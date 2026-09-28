@@ -42,7 +42,19 @@ export const heroDefinition: BlockDefinition = {
   renderer: HeroBlock,
 
   inspector: {
-    content: [],
+    content: [
+      { type: "text", path: "title", label: "Заголовок", localized: true },
+      { type: "textarea", path: "description", label: "Описание", localized: true },
+      { type: "text", path: "buttonLabel", label: "Текст кнопки", localized: true },
+      { type: "text", path: "buttonHref", label: "Ссылка кнопки", placeholder: "#contacts" },
+      {
+        type: "text",
+        path: "imageUrl",
+        label: "Изображение (URL)",
+        placeholder: "https://…",
+        variants: ["split"],
+      },
+    ],
     style: [],
   },
 };
