@@ -1,12 +1,13 @@
 "use client";
 
-import type { KeyboardEvent, MouseEvent, ReactNode } from "react";
+import { useMemo, type KeyboardEvent, type MouseEvent, type ReactNode } from "react";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { Copy, GripVertical, Trash2, type LucideIcon } from "lucide-react";
 import { toast } from "sonner";
 
 import type { BlockDefinition } from "@/builder/registry/types";
+import { InlineEditingProvider, type InlineEditing } from "@/builder/renderer/RendererContext";
 import { cn } from "@/lib/utils";
 import { selectCurrentPage, useEditorStore } from "@/store/editorStore";
 import type { PageBlock } from "@/types";
@@ -25,7 +26,17 @@ export function EditorBlockFrame({ block, definition, children }: EditorBlockFra
   const isSelected = useEditorStore((state) => state.selectedBlockId === block.id);
   const selectBlock = useEditorStore((state) => state.selectBlock);
   const duplicateBlock = useEditorStore((state) => state.duplicateBlock);
+  const updateBlockContent = useEditorStore((state) => state.updateBlockContent);
   const label = definition?.label ?? block.type;
+
+  // Inline-правки текста пишут в тот же store, что и Inspector.
+  const inlineEditing = useMemo<InlineEditing>(
+    () => ({
+      isSelected,
+      onTextChange: (path, value) => updateBlockContent(block.id, path, value),
+    }),
+    [isSelected, updateBlockContent, block.id],
+  );
 
   const { attributes, listeners, setNodeRef, setActivatorNodeRef, transform, transition, isDragging } =
     useSortable({ id: block.id });
@@ -102,7 +113,7 @@ export function EditorBlockFrame({ block, definition, children }: EditorBlockFra
         <FrameButton icon={Trash2} label="Удалить" onClick={() => removeBlockWithUndo(block, label)} />
       </div>
 
-      {children}
+      <InlineEditingProvider value={inlineEditing}>{children}</InlineEditingProvider>
     </div>
   );
 }

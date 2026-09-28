@@ -84,6 +84,9 @@ function ContentControls({ block, controls }: ContentControlsProps) {
       <h4 id="inspector-content-title" className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
         Content
       </h4>
+      <p className="-mt-2 text-xs text-muted-foreground">
+        Текст можно править и прямо на странице: кликните по тексту выделенного блока.
+      </p>
 
       {visible.map((control) => {
         const path = control.localized ? `${control.path}.${locale}` : control.path;

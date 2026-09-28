@@ -6,6 +6,7 @@ import type { Page, PageBlock } from "@/types";
 
 import { getBlockDefinition } from "../registry/blockRegistry";
 import type { BlockDefinition, RendererMode } from "../registry/types";
+import { RendererProvider } from "./RendererContext";
 import { UnknownBlock } from "./UnknownBlock";
 
 export interface BlockWrapperArgs {
@@ -31,22 +32,24 @@ export function PageRenderer({ page, locale, mode, renderBlockWrapper }: PageRen
   const blocks = mode === "editor" ? page.blocks : page.blocks.filter((block) => !block.hidden);
 
   return (
-    <div className="vsb-site" lang={locale}>
-      {blocks.map((block, index) => {
-        const definition = getBlockDefinition(block.type);
-        const Renderer = definition?.renderer;
-        const children = Renderer ? (
-          <Renderer block={block} locale={locale} mode={mode} />
-        ) : (
-          <UnknownBlock block={block} mode={mode} />
-        );
+    <RendererProvider value={{ locale, mode }}>
+      <div className="vsb-site" lang={locale}>
+        {blocks.map((block, index) => {
+          const definition = getBlockDefinition(block.type);
+          const Renderer = definition?.renderer;
+          const children = Renderer ? (
+            <Renderer block={block} locale={locale} mode={mode} />
+          ) : (
+            <UnknownBlock block={block} mode={mode} />
+          );
 
-        return (
-          <Fragment key={block.id}>
-            {renderBlockWrapper ? renderBlockWrapper({ block, index, definition, children }) : children}
-          </Fragment>
-        );
-      })}
-    </div>
+          return (
+            <Fragment key={block.id}>
+              {renderBlockWrapper ? renderBlockWrapper({ block, index, definition, children }) : children}
+            </Fragment>
+          );
+        })}
+      </div>
+    </RendererProvider>
   );
 }

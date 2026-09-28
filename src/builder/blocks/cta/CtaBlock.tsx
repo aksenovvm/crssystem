@@ -2,10 +2,10 @@ import { getLocalizedText } from "@/lib/i18n";
 
 import type { BlockRendererProps } from "../../registry/types";
 import { getString } from "../../renderer/content";
+import { EditableText } from "../../renderer/EditableText";
 
 export function CtaBlock({ block, locale }: BlockRendererProps) {
   const { content } = block;
-  const description = getLocalizedText(content.description, locale);
   const buttonLabel = getLocalizedText(content.buttonLabel, locale);
   const buttonHref = getString(content, "buttonHref") || "#";
   const variant = block.variant === "banner" ? "banner" : "centered";
@@ -15,12 +15,19 @@ export function CtaBlock({ block, locale }: BlockRendererProps) {
       <div className="vsb-container">
         <div className="vsb-cta__box">
           <div className="vsb-cta__text">
-            <h2 className="vsb-section-title">{getLocalizedText(content.title, locale)}</h2>
-            {description && <p className="vsb-cta__description">{description}</p>}
+            <EditableText as="h2" className="vsb-section-title" path="title" value={content.title} placeholder="Заголовок" />
+            <EditableText
+              as="p"
+              className="vsb-cta__description"
+              path="description"
+              value={content.description}
+              multiline
+              placeholder="Описание"
+            />
           </div>
           {buttonLabel && (
             <a className="vsb-button" href={buttonHref}>
-              {buttonLabel}
+              <EditableText path="buttonLabel" value={content.buttonLabel} placeholder="Кнопка" />
             </a>
           )}
         </div>

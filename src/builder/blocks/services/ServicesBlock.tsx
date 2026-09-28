@@ -1,10 +1,9 @@
-import { getLocalizedText } from "@/lib/i18n";
-
 import type { BlockRendererProps } from "../../registry/types";
 import { getList } from "../../renderer/content";
+import { EditableText } from "../../renderer/EditableText";
 import { SectionHeader } from "../shared/SectionHeader";
 
-export function ServicesBlock({ block, locale }: BlockRendererProps) {
+export function ServicesBlock({ block }: BlockRendererProps) {
   const { content } = block;
   const items = getList(content, "items");
   const variant = block.variant === "list" ? "list" : "cards";
@@ -12,19 +11,35 @@ export function ServicesBlock({ block, locale }: BlockRendererProps) {
   return (
     <section className={`vsb-section vsb-services vsb-services--${variant}`}>
       <div className="vsb-container">
-        <SectionHeader
-          title={getLocalizedText(content.title, locale)}
-          subtitle={getLocalizedText(content.subtitle, locale)}
-        />
+        <SectionHeader title={content.title} subtitle={content.subtitle} />
 
         <ul className="vsb-services__items">
           {items.map((item, index) => (
             <li key={index} className="vsb-service">
               <div className="vsb-service__body">
-                <h3 className="vsb-service__title">{getLocalizedText(item.title, locale)}</h3>
-                <p className="vsb-service__description">{getLocalizedText(item.description, locale)}</p>
+                <EditableText
+                  as="h3"
+                  className="vsb-service__title"
+                  path={`items.${index}.title`}
+                  value={item.title}
+                  placeholder="Услуга"
+                />
+                <EditableText
+                  as="p"
+                  className="vsb-service__description"
+                  path={`items.${index}.description`}
+                  value={item.description}
+                  multiline
+                  placeholder="Описание услуги"
+                />
               </div>
-              <p className="vsb-service__price">{getLocalizedText(item.price, locale)}</p>
+              <EditableText
+                as="p"
+                className="vsb-service__price"
+                path={`items.${index}.price`}
+                value={item.price}
+                placeholder="Цена"
+              />
             </li>
           ))}
         </ul>

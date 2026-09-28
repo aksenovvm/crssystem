@@ -1,14 +1,25 @@
+import { EditableText } from "../../renderer/EditableText";
+
 interface SectionHeaderProps {
-  title: string;
-  subtitle?: string;
+  /** `content.title` блока (LocalizedText). */
+  title: unknown;
+  /** `content.subtitle` блока (LocalizedText). */
+  subtitle: unknown;
 }
 
-/** Заголовок + подзаголовок секции по центру. */
+/** Заголовок + подзаголовок секции по центру. Пути в content: `title`, `subtitle`. */
 export function SectionHeader({ title, subtitle }: SectionHeaderProps) {
   return (
     <header className="vsb-section-header">
-      <h2 className="vsb-section-title">{title}</h2>
-      {subtitle && <p className="vsb-section-subtitle">{subtitle}</p>}
+      <EditableText as="h2" className="vsb-section-title" path="title" value={title} placeholder="Заголовок" />
+      <EditableText
+        as="p"
+        className="vsb-section-subtitle"
+        path="subtitle"
+        value={subtitle}
+        multiline
+        placeholder="Подзаголовок"
+      />
     </header>
   );
 }

@@ -1,10 +1,9 @@
-import { getLocalizedText } from "@/lib/i18n";
-
 import type { BlockRendererProps } from "../../registry/types";
 import { getList } from "../../renderer/content";
+import { EditableText } from "../../renderer/EditableText";
 import { SectionHeader } from "../shared/SectionHeader";
 
-export function FeaturesBlock({ block, locale }: BlockRendererProps) {
+export function FeaturesBlock({ block }: BlockRendererProps) {
   const { content } = block;
   const items = getList(content, "items");
   const variant = block.variant === "list" ? "list" : "grid";
@@ -12,10 +11,7 @@ export function FeaturesBlock({ block, locale }: BlockRendererProps) {
   return (
     <section className={`vsb-section vsb-features vsb-features--${variant}`}>
       <div className="vsb-container">
-        <SectionHeader
-          title={getLocalizedText(content.title, locale)}
-          subtitle={getLocalizedText(content.subtitle, locale)}
-        />
+        <SectionHeader title={content.title} subtitle={content.subtitle} />
 
         <ul className="vsb-features__items">
           {items.map((item, index) => (
@@ -24,8 +20,21 @@ export function FeaturesBlock({ block, locale }: BlockRendererProps) {
                 {index + 1}
               </span>
               <div className="vsb-feature__body">
-                <h3 className="vsb-feature__title">{getLocalizedText(item.title, locale)}</h3>
-                <p className="vsb-feature__description">{getLocalizedText(item.description, locale)}</p>
+                <EditableText
+                  as="h3"
+                  className="vsb-feature__title"
+                  path={`items.${index}.title`}
+                  value={item.title}
+                  placeholder="Пункт"
+                />
+                <EditableText
+                  as="p"
+                  className="vsb-feature__description"
+                  path={`items.${index}.description`}
+                  value={item.description}
+                  multiline
+                  placeholder="Описание пункта"
+                />
               </div>
             </li>
           ))}

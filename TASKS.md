@@ -273,12 +273,12 @@ Hero отображается из Zustand state.
 
 ## Sprint 6.2 — Inline editing
 
-- [ ] 1. Сделать редактируемый title в Hero.
-- [ ] 2. Сделать редактируемый description.
-- [ ] 3. Синхронизировать inline edit со store.
-- [ ] 4. Не ломать block selection.
-- [ ] 5. Обработать Enter/Escape.
-- [ ] 6. Добавить визуальный edit state.
+- [x] 1. Сделать редактируемый title в Hero.
+- [x] 2. Сделать редактируемый description.
+- [x] 3. Синхронизировать inline edit со store.
+- [x] 4. Не ломать block selection.
+- [x] 5. Обработать Enter/Escape.
+- [x] 6. Добавить визуальный edit state.
 
 ### ✅ CHECKPOINT 6.2
 

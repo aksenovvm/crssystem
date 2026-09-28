@@ -31,14 +31,28 @@ Next.js (App Router) · React · TypeScript strict · Tailwind CSS 4 · shadcn/u
 src/
 ├─ app/                 # маршруты Next.js
 ├─ components/
-│  ├─ editor/           # оболочка редактора (Topbar, BlockLibrary, Canvas, Inspector)
+│  ├─ editor/           # оболочка редактора (Topbar, BlockLibrary, Canvas, Inspector, EditorBlockFrame)
+│  ├─ controls/         # контролы Inspector (Text, Textarea, Select)
 │  └─ ui/               # shadcn/ui
-├─ builder/             # ядро конструктора: registry, renderer, blocks, fixtures
-├─ store/               # Zustand store редактора (Sprint 3.1)
+├─ builder/
+│  ├─ registry/         # Block Registry: типы и API (registerBlock, createBlock, ...)
+│  ├─ renderer/         # PageRenderer, EditableText, fallback для неизвестных блоков
+│  ├─ blocks/           # блоки сайта (hero, features, services, text-image, cta) + blocks.css
+│  └─ fixtures/         # демо-проект
+├─ store/               # Zustand store редактора
 ├─ types/               # модель данных проекта
 ├─ repositories/        # сохранение проекта (Sprint 11.1)
 └─ lib/                 # утилиты
 ```
+
+## Как добавить новый блок
+
+1. Создать папку `src/builder/blocks/<type>/` с renderer-компонентом и `definition.ts`
+   (type, label, category, variants, createDefault, renderer, inspector).
+2. Добавить definition в массив в `src/builder/blocks/index.ts`.
+3. Стили блока — в `src/builder/blocks/blocks.css` (обычный CSS, container queries).
+
+Ядро (registry, PageRenderer, Canvas) менять не нужно.
 
 ## Работа по спринтам
 
