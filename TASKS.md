@@ -171,14 +171,14 @@ Hero отображается из Zustand state.
 
 ## Sprint 3.2 — Выбор блока
 
-- [ ] 1. Создать `EditorBlockFrame`.
-- [ ] 2. Добавить hover outline.
-- [ ] 3. Добавить selected outline.
-- [ ] 4. Клик по блоку выбирает его.
-- [ ] 5. Клик по пустой области снимает выбор.
-- [ ] 6. Inspector показывает ID выбранного блока.
-- [ ] 7. Inspector показывает block type.
-- [ ] 8. Добавить label выбранного блока.
+- [x] 1. Создать `EditorBlockFrame`.
+- [x] 2. Добавить hover outline.
+- [x] 3. Добавить selected outline.
+- [x] 4. Клик по блоку выбирает его.
+- [x] 5. Клик по пустой области снимает выбор.
+- [x] 6. Inspector показывает ID выбранного блока.
+- [x] 7. Inspector показывает block type.
+- [x] 8. Добавить label выбранного блока.
 
 ### ✅ CHECKPOINT 3.2
 

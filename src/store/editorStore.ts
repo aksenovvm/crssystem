@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 import { demoProject } from "@/builder/fixtures/demoProject";
-import type { Breakpoint, Page, SiteProject } from "@/types";
+import type { Breakpoint, Page, PageBlock, SiteProject } from "@/types";
 
 export interface EditorState {
   project: SiteProject | null;
@@ -43,4 +43,11 @@ export const useEditorStore = create<EditorState>()((set) => ({
 
 export function selectCurrentPage(state: EditorState): Page | null {
   return state.project?.pages.find((page) => page.id === state.selectedPageId) ?? null;
+}
+
+export function selectSelectedBlock(state: EditorState): PageBlock | null {
+  if (!state.selectedBlockId) {
+    return null;
+  }
+  return selectCurrentPage(state)?.blocks.find((block) => block.id === state.selectedBlockId) ?? null;
 }
