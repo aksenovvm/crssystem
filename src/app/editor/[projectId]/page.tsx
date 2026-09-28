@@ -11,10 +11,11 @@ export const metadata: Metadata = {
 export default async function EditorPage({ params }: PageProps<"/editor/[projectId]">) {
   const { projectId } = await params;
 
-  // Пока есть только демо-проект; загрузка из repository появится в Sprint 11.1.
+  // Пока есть только демо-проект (он же начальное состояние store);
+  // загрузка из repository появится в Sprint 11.1.
   if (projectId !== demoProject.id) {
     notFound();
   }
 
-  return <EditorShell project={demoProject} />;
+  return <EditorShell />;
 }

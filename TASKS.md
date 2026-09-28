@@ -149,14 +149,14 @@ Canvas должен показывать Hero из JSON.
 
 ## Sprint 3.1 — Zustand store
 
-- [ ] 1. Установить Zustand.
-- [ ] 2. Создать `editorStore`.
-- [ ] 3. Перенести demo project в store.
-- [ ] 4. Добавить `selectedPageId`.
-- [ ] 5. Добавить `selectedBlockId`.
-- [ ] 6. Добавить `currentBreakpoint`.
-- [ ] 7. Добавить `currentLocale`.
-- [ ] 8. Подключить Canvas к store.
+- [x] 1. Установить Zustand.
+- [x] 2. Создать `editorStore`.
+- [x] 3. Перенести demo project в store.
+- [x] 4. Добавить `selectedPageId`.
+- [x] 5. Добавить `selectedBlockId`.
+- [x] 6. Добавить `currentBreakpoint`.
+- [x] 7. Добавить `currentLocale`.
+- [x] 8. Подключить Canvas к store.
 
 ### ✅ CHECKPOINT 3.1
 
