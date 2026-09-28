@@ -128,14 +128,14 @@ Editor должен продолжать запускаться.
 
 ## Sprint 2.2 — Первый реальный блок Hero
 
-- [ ] 1. Создать Hero block.
-- [ ] 2. Добавить variant `centered`.
-- [ ] 3. Добавить variant `split`.
-- [ ] 4. Создать default content.
-- [ ] 5. Зарегистрировать Hero в registry.
-- [ ] 6. Создать `PageRenderer`.
-- [ ] 7. Отрендерить Hero из Page JSON.
-- [ ] 8. Добавить fallback для неизвестного block type.
+- [x] 1. Создать Hero block.
+- [x] 2. Добавить variant `centered`.
+- [x] 3. Добавить variant `split`.
+- [x] 4. Создать default content.
+- [x] 5. Зарегистрировать Hero в registry.
+- [x] 6. Создать `PageRenderer`.
+- [x] 7. Отрендерить Hero из Page JSON.
+- [x] 8. Добавить fallback для неизвестного block type.
 
 ### ✅ CHECKPOINT 2.2
 

@@ -9,8 +9,8 @@
 import { registerBlock } from "../registry/blockRegistry";
 import type { BlockDefinition } from "../registry/types";
 
-import { testDefinition } from "./test/definition";
+import { heroDefinition } from "./hero/definition";
 
-const definitions: BlockDefinition[] = [testDefinition];
+const definitions: BlockDefinition[] = [heroDefinition];
 
 definitions.forEach(registerBlock);

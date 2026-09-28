@@ -38,6 +38,9 @@ export const demoProject: SiteProject = {
               en: "Build pages from ready-made sections and publish them as a static site.",
               uz: "Sahifalarni tayyor bo'limlardan yig'ing va statik sayt sifatida chop eting.",
             },
+            buttonLabel: { ru: "Попробовать", en: "Try it", uz: "Sinab ko'rish" },
+            buttonHref: "#features",
+            imageUrl: "",
           },
           styles: {
             spacing: {
