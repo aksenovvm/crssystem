@@ -60,14 +60,14 @@ npm run build
 
 ## Sprint 1.1 — Каркас редактора
 
-- [ ] 1. Создать `/editor/demo`.
-- [ ] 2. Создать `EditorShell`.
-- [ ] 3. Создать `EditorTopbar`.
-- [ ] 4. Создать `BlockLibrary`.
-- [ ] 5. Создать `EditorCanvas`.
-- [ ] 6. Создать `Inspector`.
-- [ ] 7. Сделать layout: left / center / right.
-- [ ] 8. Добавить адаптивную минимальную стилизацию editor UI.
+- [x] 1. Создать `/editor/demo`.
+- [x] 2. Создать `EditorShell`.
+- [x] 3. Создать `EditorTopbar`.
+- [x] 4. Создать `BlockLibrary`.
+- [x] 5. Создать `EditorCanvas`.
+- [x] 6. Создать `Inspector`.
+- [x] 7. Сделать layout: left / center / right.
+- [x] 8. Добавить адаптивную минимальную стилизацию editor UI.
 
 ### ✅ CHECKPOINT 1.1
 

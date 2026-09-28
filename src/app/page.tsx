@@ -1,6 +1,8 @@
-import { LayoutTemplate } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, LayoutTemplate } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 
 export default function HomePage() {
   return (
@@ -19,7 +21,12 @@ export default function HomePage() {
           контролами и экспортируйте как обычный статический сайт.
         </p>
 
-        <p className="text-sm text-muted-foreground">Редактор появится в Sprint 1.1.</p>
+        <Button asChild size="lg">
+          <Link href="/editor/demo">
+            Открыть демо-редактор
+            <ArrowRight aria-hidden />
+          </Link>
+        </Button>
       </div>
     </main>
   );
