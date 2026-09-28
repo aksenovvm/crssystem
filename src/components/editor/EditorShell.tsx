@@ -1,5 +1,7 @@
 "use client";
 
+import { Toaster } from "sonner";
+
 import { useEditorStore } from "@/store/editorStore";
 
 import { BlockLibrary } from "./BlockLibrary";
@@ -25,6 +27,8 @@ export function EditorShell() {
         <EditorCanvas />
         <Inspector className="border-t md:col-span-2 xl:col-span-1 xl:border-t-0 xl:border-l" />
       </div>
+
+      <Toaster position="bottom-center" />
     </div>
   );
 }

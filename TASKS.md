@@ -190,14 +190,14 @@ Hero отображается из Zustand state.
 
 ## Sprint 4.1 — Добавление и удаление
 
-- [ ] 1. Реализовать `addBlock`.
-- [ ] 2. Реализовать `removeBlock`.
-- [ ] 3. Добавить кнопку Add Hero.
-- [ ] 4. Добавить Delete в `EditorBlockFrame`.
-- [ ] 5. Добавить `duplicateBlock`.
-- [ ] 6. После удаления корректно очищать selection.
-- [ ] 7. Добавить confirm/undo-friendly UX без browser alert.
-- [ ] 8. Проверить уникальность ID.
+- [x] 1. Реализовать `addBlock`.
+- [x] 2. Реализовать `removeBlock`.
+- [x] 3. Добавить кнопку Add Hero.
+- [x] 4. Добавить Delete в `EditorBlockFrame`.
+- [x] 5. Добавить `duplicateBlock`.
+- [x] 6. После удаления корректно очищать selection.
+- [x] 7. Добавить confirm/undo-friendly UX без browser alert.
+- [x] 8. Проверить уникальность ID.
 
 ### ✅ CHECKPOINT 4.1
 

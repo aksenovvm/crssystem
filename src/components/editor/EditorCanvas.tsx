@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect } from "react";
+
 import { PageRenderer } from "@/builder/renderer/PageRenderer";
 import { cn } from "@/lib/utils";
 import { selectCurrentPage, useEditorStore } from "@/store/editorStore";
@@ -15,6 +17,17 @@ export function EditorCanvas({ className }: EditorCanvasProps) {
   const page = useEditorStore(selectCurrentPage);
   const locale = useEditorStore((state) => state.currentLocale);
   const selectBlock = useEditorStore((state) => state.selectBlock);
+  const selectedBlockId = useEditorStore((state) => state.selectedBlockId);
+
+  // Новый или скопированный блок может оказаться за пределами экрана — прокручиваем к нему.
+  useEffect(() => {
+    if (!selectedBlockId) {
+      return;
+    }
+    document
+      .querySelector(`[data-block-id="${CSS.escape(selectedBlockId)}"]`)
+      ?.scrollIntoView({ block: "nearest", behavior: "smooth" });
+  }, [selectedBlockId]);
 
   return (
     // Клик по пустой области canvas снимает выбор; клики по блокам останавливает EditorBlockFrame.
@@ -35,6 +48,11 @@ export function EditorCanvas({ className }: EditorCanvasProps) {
       </p>
 
       <div className="mx-auto w-full max-w-[1200px] flex-1 rounded-lg bg-background shadow-sm">
+        {page && page.blocks.length === 0 && (
+          <p className="p-12 text-center text-sm text-muted-foreground">
+            Страница пустая. Добавьте блок из библиотеки слева.
+          </p>
+        )}
         {page ? (
           <PageRenderer
             page={page}

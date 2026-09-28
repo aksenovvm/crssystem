@@ -1,10 +1,12 @@
 "use client";
 
 import type { KeyboardEvent, MouseEvent, ReactNode } from "react";
+import { Copy, Trash2, type LucideIcon } from "lucide-react";
+import { toast } from "sonner";
 
 import type { BlockDefinition } from "@/builder/registry/types";
 import { cn } from "@/lib/utils";
-import { useEditorStore } from "@/store/editorStore";
+import { selectCurrentPage, useEditorStore } from "@/store/editorStore";
 import type { PageBlock } from "@/types";
 
 interface EditorBlockFrameProps {
@@ -14,12 +16,13 @@ interface EditorBlockFrameProps {
 }
 
 /**
- * Оболочка блока в редакторе: hover/selected outline и label.
+ * Оболочка блока в редакторе: hover/selected outline, label и toolbar.
  * Сам renderer блока ничего не знает про редактор.
  */
 export function EditorBlockFrame({ block, definition, children }: EditorBlockFrameProps) {
   const isSelected = useEditorStore((state) => state.selectedBlockId === block.id);
   const selectBlock = useEditorStore((state) => state.selectBlock);
+  const duplicateBlock = useEditorStore((state) => state.duplicateBlock);
   const label = definition?.label ?? block.type;
 
   function handleClick(event: MouseEvent<HTMLDivElement>) {
@@ -65,7 +68,57 @@ export function EditorBlockFrame({ block, definition, children }: EditorBlockFra
       >
         {label}
       </span>
+
+      <div
+        role="toolbar"
+        aria-label={`Действия с блоком ${label}`}
+        className={cn(
+          "invisible absolute top-1.5 right-1.5 z-10 flex gap-0.5 rounded-md bg-sky-600 p-0.5 font-sans text-white shadow-md group-focus-within/block:visible group-hover/block:visible",
+          isSelected && "visible",
+        )}
+      >
+        <FrameButton icon={Copy} label="Дублировать" onClick={() => duplicateBlock(block.id)} />
+        <FrameButton icon={Trash2} label="Удалить" onClick={() => removeBlockWithUndo(block, label)} />
+      </div>
+
       {children}
     </div>
   );
+}
+
+interface FrameButtonProps {
+  icon: LucideIcon;
+  label: string;
+  onClick: () => void;
+}
+
+function FrameButton({ icon: Icon, label, onClick }: FrameButtonProps) {
+  return (
+    <button
+      type="button"
+      title={label}
+      aria-label={label}
+      onClick={(event) => {
+        event.stopPropagation();
+        onClick();
+      }}
+      className="flex size-7 items-center justify-center rounded hover:bg-white/20 focus-visible:bg-white/20 focus-visible:outline-2 focus-visible:outline-white"
+    >
+      <Icon className="size-4" aria-hidden />
+    </button>
+  );
+}
+
+/** Удаляет блок без confirm-диалога, но с возможностью отменить удаление из toast. */
+function removeBlockWithUndo(block: PageBlock, label: string) {
+  const state = useEditorStore.getState();
+  const index = selectCurrentPage(state)?.blocks.findIndex((item) => item.id === block.id) ?? -1;
+  state.removeBlock(block.id);
+
+  toast(`Блок «${label}» удалён`, {
+    action: {
+      label: "Отменить",
+      onClick: () => useEditorStore.getState().addBlock(block, index),
+    },
+  });
 }
